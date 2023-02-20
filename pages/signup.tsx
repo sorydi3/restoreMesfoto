@@ -4,6 +4,7 @@ import app from "./api/firebase";
 import { useState } from "react";
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import redis from '../utils/redis';
+import Link from "next/link"
 import { useRouter} from 'next/router';
 const auth = getAuth(app);
 
@@ -34,24 +35,36 @@ function Logindetaill(props: any) {
         Router.push('/index');
     }
     return (
-        <div className="App mt-3 flex flex-col w-80 mx-auto space-y-3 items-center justify-center">
-            <input
-                type="email"
-                className='bg-red-100 h-8 rounded-md px-2'
-                placeholder='Email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                type="password"
-                className='bg-red-100 h-8 rounded-md px-2'
-                placeholder='Password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
-            <button onClick={() => createUserWithEmailAndPassword(email, password)}>
-                Register
-            </button>
+        <div className="flex justify-center items-center w-screen h-screen">
+            <div className="App mt-3 flex flex-col w-80 mx-auto space-y-3 items-center justify-center">
+                <h1>Signup</h1>
+                <input
+                    type="email"
+                    className='bg-red-100 h-8 rounded-md px-2'
+                    placeholder='Email'
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                    type="password"
+                    className='bg-red-100 h-8 rounded-md px-2'
+                    placeholder='Password'
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <button onClick={() => createUserWithEmailAndPassword(email, password)}
+                     className="bg-blue-400 text-white hover:text-black rounded-md mx-auto p-3"
+                >
+                    Signup
+                </button>
+                <Link
+                    href="/login"
+                    className="text-sky-500"
+                   
+                >
+                 Already have an account? Login
+                </Link>
+            </div>
         </div>
     );
 };
