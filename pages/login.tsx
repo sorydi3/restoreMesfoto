@@ -59,7 +59,7 @@ function Login(props: any) {
                 </button>
                 <Link
                     href="\signup"
-                    className='text-blue-500'
+                    className='text-blue-500'   
                 >
                     Don't have an account? Sign up
                 </Link>
@@ -71,12 +71,12 @@ function Login(props: any) {
 export default Login;
 
 /*
-const Login = (props: Props) => {
+    const Login = (props: Props) => {
 
-    return (
-        <div>login</div>
-    )
-}
+        return (
+            <div>login</div>
+        )
+    }
 
-export default Login
+    export default Login
 */
