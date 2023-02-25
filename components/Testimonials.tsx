@@ -85,6 +85,8 @@ export function Testimonials() {
             See what our 100,000+ users are saying about the product.
           </p>
         </div>
+        <section className="diagonal1">
+        <div className="mt-auto">
         <ul
           role="list"
           className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-6 sm:gap-8 lg:mt-16 lg:max-w-none lg:grid-cols-3"
@@ -131,6 +133,8 @@ export function Testimonials() {
             </li>
           ))}
         </ul>
+        </div>
+        </section>
       </div>
     </section>
   );
