@@ -14,6 +14,11 @@ import ResizablePanel from "../components/ResizablePanel";
 import Toggle from "../components/Toggle";
 import appendNewToName from "../utils/appendNewToName";
 import downloadPhoto from "../utils/downloadPhoto";
+import app from "./api/firebase";
+import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+const auth = getAuth(app);
+
 
 // Configuration for the uploader
 const uploader = Uploader({
@@ -36,6 +41,8 @@ const Home: NextPage = () => {
   const [sideBySide, setSideBySide] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [photoName, setPhotoName] = useState<string | null>(null);
+
+  
 
   const UploadDropZone = () => (
     <UploadDropzone
@@ -161,7 +168,7 @@ const Home: NextPage = () => {
                 </div>
               )}
               <div className="flex space-x-2 justify-center">
-                {originalPhoto && !loading && (
+                {originalPhoto && !loading && ( 
                   <button
                     onClick={() => {
                       setOriginalPhoto(null);
@@ -196,5 +203,18 @@ const Home: NextPage = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(params:any){
+  //check if user is logged in
+  console.log(auth);
+  if(!auth.currentUser){
+    return {
+      redirect: {
+        destination: '/login',
+        permanent: false,
+      },
+    }
+  } //if not, redirect to login page
+}
 
 export default Home;
