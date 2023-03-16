@@ -1,3 +1,156 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@property --gradient-angle{
+    syntax:"<angle>";
+    initial-value:0deg;
+    inherit:false;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  line-height: 1.5;
+  --scroll-behavior: smooth;
+}
+body {
+    margin: 0;
+    font-family: inherit;
+    line-height: inherit;
+    
+}
+
+:root{
+    --clr-1:#052b2f;
+    --clr-2:#073438;
+    --clr-3:#0e4b50;
+    --clr-4:#2d8f85;
+    --clr-5:#637c54;
+}
+/*
+.main{
+    content: "";
+    isolation: isolate;
+    width: screen;
+    z-index: -1;
+    background-image: radial-gradient ( rgba(163, 226, 17, 0.5) 15%, rgba(241, 241, 241, 0.5) 85%);
+    position: relative;
+    background-size: cover;
+}
+
+.bg-image{
+    isolation: isolate;
+    --padding-top: 5rem;
+    padding-top: var(--padding-top);
+    width: 100vw;
+    height: 100vh;
+    
+}
+
+.bg-image::before{
+    content: "";
+    
+    position: absolute;
+    background-image: radial-gradient(rgba(163, 226, 17, 0.5), rgba(165, 11, 11, 0.5));
+
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+    rotate: 0deg;
+    --border-top: 2px solid #c51515;
+
+}
+*/
+
+
+.diagonal{
+    margin-top: 8rem;
+    padding-inline: 3rem;
+    padding-top: 5rem;
+    width: 100vw;
+
+    position: relative;
+    isolation: isolate;
+}
+
+.home-button {
+    @apply  hover:text-gray-600 px-3 py-2 rounded-md text-lg fixed text-gray-600 font-extrabold bottom-8 right-8 animate-pulse;
+    background: #0000;
+}
+
+.card{
+    height: 60vh;
+    background:var(--clr-1);
+    aspect-ratio:1/1.5;
+    border-radius:0.5rem;
+    position:relative;
+}
+
+.card::before,.card::after{
+    content:"";
+    position:absolute;
+    inset:-.5rem;
+    background:var(--clr-5);
+    border-radius:inherit;
+    z-index: -1;
+    background: conic-gradient(
+        from var(--gradient-angle),
+        var(--clr-3),
+        var(--clr-4),
+        var(--clr-5),
+        var(--clr-4),
+        var(--clr-3),
+    );
+
+    animation: rotation 20s linear infinit;
+}
+
+.card::after{
+    filter:blur(3.5rem);
+}
+
+@keyframes rotation {
+    0% {--gradient-angle:0deg;}
+    100% {--gradient-angle:360deg;}
+}
+
+.diagonal::before{
+    content: "";
+   
+    background-image: radial-gradient(rgba(186, 182, 129, 0.5), rgba(125, 206, 150, 0.539));
+    position: absolute;
+    inset: 0;
+    transform: skewY(-5deg);
+    z-index: -1;
+    
+}
+
+.diagonal1{
+    padding: 3rem;
+    margin-top: 2rem;
+    position: relative;
+    isolation: isolate;
+}
+
+.diagonal1::before{
+    content: "";
+    background-image: radial-gradient(rgba(220, 216, 155, 0.5), rgba(209, 67, 67, 0.5));
+    position: absolute;
+    inset: 0;
+    transform: skewY(-5deg);
+    z-index: -1;
+}
+
+
+
+/*
+    background-image: linear-gradient(45deg, #c51515 25%, transparent 25%), linear-gradient(-45deg, #c51515 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #c51515 75%), linear-gradient(-45deg, transparent 75%, #c51515 75%);
+*/
