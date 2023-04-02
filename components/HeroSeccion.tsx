@@ -2,10 +2,17 @@ import React from 'react'
 import Image from "next/image";
 import Link from "next/link";
 import SquigglyLines from "../components/SquigglyLines";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { textContainer, textVariant2, fadeIn,planetVariants ,zoomIn} from "../utils/motion";
 
 export default function Hero(params: any) {
+
+    const {scrollY} = useScroll();
+
+    let y = useTransform(scrollY, [0, 600], ["0%", "80%"]);
+
+
+
 
     return (<section className='diagonal'>
         <div className=" wrapper flex flex-1 w-full flex-col items-center justify-center text-center relative ">
@@ -22,6 +29,8 @@ export default function Hero(params: any) {
                 variants={fadeIn("right", "spring", 1, 2)}
                 initial="hidden"
                 whileInView="show"
+
+                style={{y}}
 
             >
                 Revive tus recuerdos usando{" "}
@@ -47,17 +56,20 @@ export default function Hero(params: any) {
 
                 </Link>
             </div>
+
+            <div className=".card">
+                
+            </div>
             <div className="flex justify-between items-center w-full flex-col sm:mt-10 mt-6">
                 <div className="flex flex-col space-y-10 mt-4 mb-16">
                     <div className="flex sm:space-x-2 sm:flex-row flex-col">
                         <div>
                             <h2 className="mb-1 font-medium text-lg">Foto original</h2>
-                            <motion.image
+                            <motion.div
                                 variants={fadeIn("right", "spring", 0.5, 1.5)}
                                 initial="hidden"
                                 whileInView="show"
                             >
-
                                 <Image
                                     alt="Original photo of my bro"
                                     src="/michael.jpg"
@@ -65,13 +77,13 @@ export default function Hero(params: any) {
                                     width={400}
                                     height={400}
                                 />
-                            </motion.image>
+                            </motion.div>
                         </div>
                         <div className="sm:mt-0 mt-8">
                             <h2 className="mb-1 font-medium text-lg">Foto Restorada</h2>
 
-                            <motion.image
-                                 variants={zoomIn(2, 0.5)}
+                            <motion.div
+                                 variants={zoomIn(0.8, 0.5)}
                                  initial="hidden"
                                  whileInView="show"
                             >
@@ -83,7 +95,7 @@ export default function Hero(params: any) {
                                     src="/michael-new.jpg"
                                     className="w-96 h-96 rounded-2xl sm:mt-0 mt-2"
                                 />
-                            </motion.image>
+                            </motion.div>
 
                         </div>
                     </div>
