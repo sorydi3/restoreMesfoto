@@ -1,5 +1,38 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withAuthUser, AuthAction } from 'next-firebase-auth'
+import { getAuth, signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import Router from "next/router"
+import app from "../pages/api/firebase";
+
+
+
+function LoginButton() {
+  const auth = getAuth(app);
+  const [user] = useAuthState(auth);
+  return ( <>
+    {!user ? <button onClick={() => Router.push("/login")}
+    className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
+    >Signin</button>  : <LoginButton/> }
+    </>
+  )
+}
+  
+
+
+
+function LogoutButton() {
+  const auth = getAuth(app);
+  const [user] = useAuthState(auth);
+  return (<>
+    {user ? <button onClick={() => signOut(auth)}
+    className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+    >Signout</button>  : <LoginButton/> }
+  </>
+    
+  )
+}
 
 export default function Header() {
   return (
@@ -29,6 +62,7 @@ export default function Header() {
           height={28}
         />
       </a>
+      <LogoutButton />
     </header>
   );
 }
